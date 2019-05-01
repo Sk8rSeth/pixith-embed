@@ -1,2 +1,2 @@
-# wp-embed
+# pixith-embed
 create embed links for infographics
