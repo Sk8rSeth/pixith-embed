@@ -35,6 +35,8 @@ function build_copy_code($asset_url = '', $utm_medium = '') {
 
 function build_modal_html($asset_url = '', $utm_medium = '') {
     $modal = '<div class="pixith-embed-modal" id="embedModal" style="min-width:600px; max-width:800px; display: none;">';
+    $modal .= '<h3 class="embed-header">Embed Code:</h3>';
+    $modal .= '<p class="embed-subheader">click to copy</p>';
     $modal .= '<div class="code">'; // start code output, THIS IS WHERE THE CODE TO COPY IS VV
     $modal .= build_copy_code($asset_url, $utm_medium);
     $modal .= '</div>'; // end code copy section ^^
@@ -43,7 +45,7 @@ function build_modal_html($asset_url = '', $utm_medium = '') {
 }
 
 function build_modal_button() {
-    $html = '<a data-fancybox data-src="#embedModal" class="button pixith-modal-button">';
+    $html = '<a data-fancybox data-src="#embedModal" data-touch="false" class="button pixith-modal-button">';
     $html .= 'Embed This';
     // $html .= get_option('pixith_modal_button_text');
     $html .= '</a>';

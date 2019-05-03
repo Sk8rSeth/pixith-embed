@@ -7,5 +7,19 @@
     font-family: 'Lato',Helvetica,Arial,Verdana;
     font-weight: 400;
     font-size: 14px;
+    letter-spacing: 1px;
     color: #777;
+}
+
+.pixith-embed-modal .embed-header {
+    border-bottom: 1px solid #999;
+    color: #333;
+}
+
+.pixith-embed-modal .embed-subheader {
+    color: #777;
+    padding: 0;
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 18px;
 }
