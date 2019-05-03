@@ -39,8 +39,9 @@ class PixithEmbed {
     private static $_pixith;
 
     public function __construct() {
-        $this->includes();
-        add_action( 'wp_enqueue_scripts', array( $this, 'pixith_enqueue_scripts' ), 9999 );
+        $this->php_includes();
+        $this->init_hooks();
+
     }
 
     public static function init() {
@@ -50,22 +51,44 @@ class PixithEmbed {
         return self::$_pixith;
     }
 
-    public function includes() {
+    public function php_includes() {
         //always includes
         require_once PIXITH_ROOT . '/inc/shortcode.php';
 
         // admin only includes
         if (is_admin()) {
             require_once PIXITH_ROOT . '/inc/admin/shortcode-button.php';
+            require_once PIXITH_ROOT . '/inc/admin/settings-page.php';
 
         // frontend only includes
         } else {
         }
     }
 
-    function pixith_enqueue_scripts() {
-        wp_register_script('pixith-tinymce-button', PIXITH_ASSET_URI.'/js/pixith-tinymce-button.js');
+    public function init_hooks() {
+        add_action( 'wp_enqueue_scripts', array( $this, 'pixith_frontend_enqueue_scripts' ), 9999 );
+        add_action( 'admin_enqueue_scripts', array( $this, 'pixith_admin_enqueue_scripts' ), 9999 );
+
     }
+
+    function pixith_frontend_enqueue_scripts() {
+        // front end enqueues
+        wp_enqueue_script('pixith-modal', PIXITH_ASSET_URI.'/js/pixith-modal.js', array( 'jquery' ));
+        wp_enqueue_script('fancybox-js', PIXITH_ASSET_URI.'/js/jquery.fancybox.min.js', array( 'jquery' ));
+
+        wp_enqueue_style('pixith-css', PIXITH_ASSET_URI.'/css/pixith-embed-styles.css');
+        wp_enqueue_style('fancybox-css', PIXITH_ASSET_URI.'/css/jquery.fancybox.min.css');
+    }
+
+    function pixith_admin_enqueue_scripts() {
+        // admin side enqueues
+        wp_enqueue_script('pixith-tinymce-button', PIXITH_ASSET_URI.'/js/admin/pixith-tinymce-button.js', array( 'jquery' ));
+    }
+
+    public static function con($text){
+        return '<div>'.$text.'</div>';
+    }
+
 }
 
 PixithEmbed::init();

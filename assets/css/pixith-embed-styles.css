@@ -1,0 +1,11 @@
+.pixith-embed-modal .code{
+    padding: 5px 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    font-family: 'Lato',Helvetica,Arial,Verdana;
+    font-weight: 400;
+    font-size: 14px;
+    color: #777;
+}
