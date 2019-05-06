@@ -11,6 +11,10 @@
     color: #777;
 }
 
+.pixith-embed-modal .code.selected {
+    background-color: #8DD07F;
+}
+
 .pixith-embed-modal .embed-header {
     border-bottom: 1px solid #999;
     color: #333;
@@ -22,4 +26,27 @@
     font-size: 12px;
     margin-bottom: 0;
     margin-top: 18px;
+}
+
+.pixith-embed-modal .code-container {
+    position: relative;
+}
+
+.pixith-embed-modal .embed-copied {
+    position: absolute;
+    top: 0;
+    left: 44%;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    opacity: 0;
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+    #embedModal {
+        min-width: 600px;
+        max-width: 800px;
+    }
 }
