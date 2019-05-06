@@ -19,27 +19,38 @@ function pixith_embed_shortcodes_init() {
 }
 add_action('init', 'pixith_embed_shortcodes_init');
 
-function build_copy_code($asset_url = '', $utm_medium = '') {
+function build_copy_code($asset_url = '', $utm_medium = 'external_embed', $from = '') {
     if (!empty($asset_url)) {
         // get website domain name
-        $domain = get_site_url();
+        $domain = $_SERVER['HTTP_HOST'];
+        $host_url = $_SERVER['REQUEST_SCHEME'].'://'.$domain;
+        $this_link = $domain . $_SERVER['REQUEST_URI'];
         // get website title
         $name = get_bloginfo('name');
         $code = '<div class="'.sanitize_title($name).'-embed">'; // create container with site name embed class
+        $code .= '<a href="'.$this_link.'">';
         $code .= '<img class="'.sanitize_title($name).'-infographic" src="'.$asset_url.'"/>'; //actually input the image linked
-        $code .= '<a href="">From '.$domain.'</a>';
+        $code .= '</a>';
+        if (empty($from)) {
+            $code .= '<p>From <a href="'.$host_url.'"> '.$domain.'</a></p>';
+        } else {
+            $code .= '<p>From <a href="'.$host_url.'"> '.$from.'</a></p>';
+        }
         $code .= '</div>';
         return htmlentities($code);
     }
 }
 
 function build_modal_html($asset_url = '', $utm_medium = '') {
-    $modal = '<div class="pixith-embed-modal" id="embedModal" style="min-width:600px; max-width:800px; display: none;">';
+    $modal = '<div class="pixith-embed-modal" id="embedModal" style=" display: none;">';
     $modal .= '<h3 class="embed-header">Embed Code:</h3>';
     $modal .= '<p class="embed-subheader">click to copy</p>';
+    $modal .= '<div class="code-container">';
+    $modal .= '<p class="embed-copied">copied!</p>';
     $modal .= '<div class="code">'; // start code output, THIS IS WHERE THE CODE TO COPY IS VV
     $modal .= build_copy_code($asset_url, $utm_medium);
     $modal .= '</div>'; // end code copy section ^^
+    $modal .= '</div>';
     $modal .= '</div>';
     return $modal;
 }
