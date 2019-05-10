@@ -20,6 +20,10 @@
     color: #333;
 }
 
+.pixith-container {
+    text-align: center;
+}
+
 .pixith-embed-modal .embed-subheader {
     color: #777;
     padding: 0;

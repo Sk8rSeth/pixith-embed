@@ -7,7 +7,7 @@ function pixith_embed_shortcodes_init() {
             'url' => 'vuria.com',
             'utm_medium' => 'external_embed',
         ], $atts);
-        $html = '<div class="container">'; //open container element
+        $html = '<div class="pixith-container">'; //open container element
         $html .= build_modal_button(); // build and display modal button element
         $html .= build_modal_html($pixith_atts['url'], $pixith_atts['utm_medium']); // build initially hidden modal popup
         $html .= '<div>'; //close container element
