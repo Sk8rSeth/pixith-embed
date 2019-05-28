@@ -1,7 +1,7 @@
 <?php
 
-// add_action('admin_init', 'pixith_settings_init');
-// add_action( 'admin_menu', 'pixith_options_page', 10);
+add_action('admin_init', 'pixith_settings_init');
+add_action( 'admin_menu', 'pixith_options_page', 10);
 
 function pixith_settings_init() {
 
