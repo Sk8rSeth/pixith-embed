@@ -16,7 +16,6 @@
 }
 
 .pixith-embed-modal .embed-header {
-    /* border-bottom: 1px solid #999; */
     color: #333;
 }
 
@@ -53,4 +52,14 @@
         min-width: 600px;
         max-width: 800px;
     }
+}
+
+.pixith-embed-modal input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.pixith-embed-modal input[type=number]::-webkit-inner-spin-button,
+.pixith-embed-modal input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

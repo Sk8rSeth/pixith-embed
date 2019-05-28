@@ -29,7 +29,7 @@ function build_copy_code($asset_url = '', $utm_medium = 'external_embed', $from 
         $name = get_bloginfo('name');
         $code = '<div class="'.sanitize_title($name).'-embed">'; // create container with site name embed class
         $code .= '<a href="'.$this_link.'">';
-        $code .= '<img class="'.sanitize_title($name).'-infographic" src="'.$asset_url.'"/>'; //actually input the image linked
+        $code .= '<img style="width:auto;" class="'.sanitize_title($name).'-infographic" src="'.$asset_url.'"/>'; //actually input the image linked
         $code .= '</a>';
         if (empty($from)) {
             $code .= '<p>From <a href="'.$host_url.'"> '.$domain.'</a></p>';
@@ -41,6 +41,15 @@ function build_copy_code($asset_url = '', $utm_medium = 'external_embed', $from 
     }
 }
 
+function build_width_form() {
+    $form = '<form class="pixith-width-form" style="position:relative; text-align:center; margin-top:2rem;">';
+    $form.= '<label style="display:inline" for="width-input">Change Width: </label>';
+    $form .= '<input style="display:inline; width:12%;" id="width-input" type="number" placeholder="1024">';
+    $form .= '<span style="position:absolute;z-index:9;right:37%;top:10%;color:#777;">px</span>';
+    $form .= '</form>';
+    return $form;
+}
+
 function build_modal_html($asset_url = '', $utm_medium = '') {
     $modal = '<div class="pixith-embed-modal" id="embedModal" style=" display: none;">';
     $modal .= '<h3 class="embed-header">Embed Code:</h3>';
@@ -50,8 +59,9 @@ function build_modal_html($asset_url = '', $utm_medium = '') {
     $modal .= '<div class="code">'; // start code output, THIS IS WHERE THE CODE TO COPY IS VV
     $modal .= build_copy_code($asset_url, $utm_medium);
     $modal .= '</div>'; // end code copy section ^^
-    $modal .= '</div>';
-    $modal .= '</div>';
+    $modal .= '</div>'; // end of code-container
+    $modal .= build_width_form();
+    $modal .= '</div>'; // end of modal container
     return $modal;
 }
 
